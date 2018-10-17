@@ -8,23 +8,28 @@ const Container = styled.footer`
   height: 200px;
   background-color: grey;
   color: white;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Box = styled.div`
-  width: 50%;
+  /* width: 75%; */
+  height: 80%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 30px;
+  justify-content: center;
+  padding: 0 20% 0 20%;
 `;
 
 const CustomIcon = styled(Icon)`
   margin-right: 10px;
+`;
+
+const Label = styled(Text)`
+  padding: 5px 0 5px 0;
 `;
 
 class Footer extends React.Component {
@@ -32,30 +37,22 @@ class Footer extends React.Component {
     return (
       <Container>
         <Box>
-          <div>
-            <Text>
-              <CustomIcon icon={IconNames.MAP_MARKER} />
-              adress
-            </Text>
-          </div>
-          <div>
-            <Text>
-              <CustomIcon icon={IconNames.PHONE} />
-              tel
-            </Text>
-          </div>
-          <div>
-            <Text>
-              <CustomIcon icon={IconNames.DOCUMENT} />
-              fax
-            </Text>
-          </div>
-          <div>
-            <Text>
-              <CustomIcon icon={IconNames.ENVELOPE} />
-              email
-            </Text>
-          </div>
+          <Label>
+            <CustomIcon icon={IconNames.MAP_MARKER} />
+            adress
+          </Label>
+          <Label>
+            <CustomIcon icon={IconNames.PHONE} />
+            tel
+          </Label>
+          <Label>
+            <CustomIcon icon={IconNames.DOCUMENT} />
+            fax
+          </Label>
+          <Label>
+            <CustomIcon icon={IconNames.ENVELOPE} />
+            email
+          </Label>
         </Box>
         <Box>
           <div>about company</div>
