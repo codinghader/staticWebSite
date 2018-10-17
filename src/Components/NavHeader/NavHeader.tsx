@@ -1,17 +1,16 @@
 import React from "react";
 import styled from "src/typed-components";
-import {
-  Alignment,
-  Button,
-  Classes,
-  Navbar,
-  NavbarGroup,
-  NavbarHeading
-} from "@blueprintjs/core";
+import { Button, Classes } from "@blueprintjs/core";
 
-const StyledNavbar = styled(Navbar)`
+const Header = styled.header`
   height: 77px;
-  /* display: flex; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Title = styled.h1`
+  width: 150px;
 `;
 
 interface IProps {
@@ -20,11 +19,9 @@ interface IProps {
 class NavHeader extends React.Component<IProps> {
   public render() {
     return (
-      <StyledNavbar>
-        <NavbarGroup align={Alignment.LEFT}>
-          <NavbarHeading>Company</NavbarHeading>
-        </NavbarGroup>
-        <NavbarGroup align={Alignment.RIGHT}>
+      <Header>
+        <Title>Company</Title>
+        <div>
           <Button
             className={Classes.MINIMAL}
             text="Home"
@@ -53,8 +50,8 @@ class NavHeader extends React.Component<IProps> {
               this.props.OnSelectMenu("visa");
             }}
           />
-        </NavbarGroup>
-      </StyledNavbar>
+        </div>
+      </Header>
     );
   }
 }
