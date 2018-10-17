@@ -4,7 +4,7 @@ import { ApolloLink, concat, Operation, split } from "apollo-link";
 import { onError } from "apollo-link-error";
 import { HttpLink } from "apollo-link-http";
 import { withClientState } from "apollo-link-state";
-import { WebSocketLink } from "apollo-link-ws";
+
 import { getMainDefinition } from "apollo-utilities";
 import { toast } from "react-toastify";
 
@@ -35,24 +35,20 @@ const httpLink = new HttpLink({
   uri: isDev ? "http://localhost:4000/graphql" : "" // "https://nuberserver.now.sh/graphql"
 });
 
-const wsLink = new WebSocketLink({
-  options: {
-    connectionParams: {
-      "X-JWT": getToken()
-    },
-    reconnect: true
-  },
-  uri: isDev ? "ws://localhost:4000/subscription" : "" // "ws://nuberserver.now.sh/subscription"
-});
+// const wsLink = new WebSocketLink({
+//   options: {
+//     connectionParams: {
+//       "X-JWT": getToken()
+//     },
+//     reconnect: true
+//   },
+//   uri: isDev ? "ws://localhost:4000/subscription" : "" // "ws://nuberserver.now.sh/subscription"
+// });
 
-const combinedLinks = split(
-  ({ query }) => {
-    const { kind, operation }: any = getMainDefinition(query);
-    return kind === "OperationDefinition" && operation === "subscription";
-  },
-  wsLink,
-  httpLink
-);
+const combinedLinks = split(({ query }) => {
+  const { kind, operation }: any = getMainDefinition(query);
+  return kind === "OperationDefinition" && operation === "subscription";
+}, httpLink);
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
