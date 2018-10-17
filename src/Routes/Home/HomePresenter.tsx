@@ -14,6 +14,7 @@ import { MdHome } from "react-icons/md";
 import styled from "src/typed-components";
 
 import NavHeader from "src/Components/NavHeader";
+import Footer from "src/Components/Footer";
 
 interface IProps {
   isSidebarOpen: boolean;
@@ -23,7 +24,10 @@ interface IProps {
 
 const Main = styled<{ isSidebarOpen: boolean }, any>("main")`
   padding-left: ${props => (props.isSidebarOpen ? "240px" : "0")};
-  height: 100vh;
+  height:100vh - 277px;
+  position: fixed;
+  left: 0;
+  top 77;
 `;
 
 const StyledIcon = styled(Icon)`
@@ -70,6 +74,7 @@ const HomePresenter: React.SFC<IProps> = ({
       <Route path="/" exact={true} component={HomeContents} />
       <Route path="/bus" exact={true} component={Bus} />
     </Main>
+    <Footer />
   </React.Fragment>
 );
 
