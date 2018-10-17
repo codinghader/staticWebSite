@@ -1,13 +1,21 @@
 import React from "react";
-import { RouteComponentProps } from "react-router-dom";
+import styled from "src/typed-components";
 
-interface IProps extends RouteComponentProps<any> {}
+const Container = styled.div`
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-class BusContainer extends React.Component<IProps, any> {
-  public render() {
-    console.log("load home contents container");
-    return <div>Bus page</div>;
-  }
-}
+const BusContainer: React.SFC<any> = () => (
+  <React.Fragment>
+    <Container>
+      <div>bus page</div>
+    </Container>
+    ;
+  </React.Fragment>
+);
 
 export default BusContainer;

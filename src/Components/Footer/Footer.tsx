@@ -4,9 +4,6 @@ import { Icon, Text } from "@blueprintjs/core";
 import { IconNames } from "@blueprintjs/icons";
 
 const Container = styled.footer`
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   height: 200px;
   background-color: grey;

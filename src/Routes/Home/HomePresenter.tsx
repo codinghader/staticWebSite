@@ -1,18 +1,9 @@
 import React from "react";
 import { Route } from "react-router";
-
-// Be sure to include styles at some point, probably during your bootstraping
-import "@trendmicro/react-sidenav/dist/react-sidenav.css";
-import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
-import { Icon } from "@blueprintjs/core";
-import { IconNames } from "@blueprintjs/icons";
+import styled from "src/typed-components";
 
 import HomeContents from "../HomeContents";
 import Bus from "../Bus";
-import { FaBus } from "react-icons/fa";
-import { MdHome } from "react-icons/md";
-import styled from "src/typed-components";
-
 import NavHeader from "src/Components/NavHeader";
 import Footer from "src/Components/Footer";
 
@@ -22,12 +13,24 @@ interface IProps {
   OnSelectMenu: (selected) => void;
 }
 
-const Main = styled<{ isSidebarOpen: boolean }, any>("main")`
-  padding-left: ${props => (props.isSidebarOpen ? "240px" : "0")};
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const StyledIcon = styled(Icon)`
-  vertical-align: middle;
+const Grid = styled.div`
+  max-width: 1100px;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+`;
+const Main = styled<{ isSidebarOpen: boolean }, any>("main")`
+  padding-left: ${props => (props.isSidebarOpen ? "240px" : "0")};
+  width: 100%;
+  height: 100%;
 `;
 
 const HomePresenter: React.SFC<IProps> = ({
@@ -36,41 +39,16 @@ const HomePresenter: React.SFC<IProps> = ({
   OnSelectMenu
 }) => (
   <React.Fragment>
-    <NavHeader OnSelectMenu={OnSelectMenu} />
-
-    <SideNav
-      onSelect={OnSelectMenu}
-      onToggle={onSetSidebarOpen}
-      hidden={!isSidebarOpen}
-    >
-      <SideNav.Toggle />
-      <SideNav.Nav defaultSelected="">
-        <NavItem eventKey="">
-          <NavIcon>
-            <MdHome style={{ fontSize: "1.75em", verticalAlign: "middle" }} />
-          </NavIcon>
-          <NavText>Home</NavText>
-        </NavItem>
-        <NavItem eventKey="bus">
-          <NavIcon>
-            <FaBus style={{ fontSize: "1.75em", verticalAlign: "middle" }} />
-          </NavIcon>
-          <NavText>버스</NavText>
-        </NavItem>
-        <NavItem eventKey="ticket">
-          <NavIcon>
-            <StyledIcon icon={IconNames.PEOPLE} iconSize={Icon.SIZE_LARGE} />
-          </NavIcon>
-          <NavText>항공권</NavText>
-        </NavItem>
-      </SideNav.Nav>
-    </SideNav>
-
-    <Main isSidebarOpen={isSidebarOpen}>
-      <Route path="/" exact={true} component={HomeContents} />
-      <Route path="/bus" exact={true} component={Bus} />
-    </Main>
-    <Footer />
+    <Container>
+      <Grid>
+        <NavHeader OnSelectMenu={OnSelectMenu} />
+        <Main isSidebarOpen={isSidebarOpen}>
+          <Route path="/" exact={true} component={HomeContents} />
+          <Route path="/bus" exact={true} component={Bus} />
+        </Main>
+        <Footer />
+      </Grid>
+    </Container>
   </React.Fragment>
 );
 
