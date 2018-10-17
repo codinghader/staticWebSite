@@ -2,15 +2,25 @@ import React from "react";
 import styled from "src/typed-components";
 import { Button, Classes } from "@blueprintjs/core";
 
-const Header = styled.header`
+const Grid = styled.header`
   height: 77px;
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  grid-template-rows: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Title = styled.h1`
-  width: 150px;
+const Main = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 interface IProps {
@@ -19,9 +29,9 @@ interface IProps {
 class NavHeader extends React.Component<IProps> {
   public render() {
     return (
-      <Header>
+      <Grid>
         <Title>Company</Title>
-        <div>
+        <Main>
           <Button
             className={Classes.MINIMAL}
             text="Home"
@@ -50,8 +60,8 @@ class NavHeader extends React.Component<IProps> {
               this.props.OnSelectMenu("visa");
             }}
           />
-        </div>
-      </Header>
+        </Main>
+      </Grid>
     );
   }
 }
